@@ -100,6 +100,13 @@ export default {
             this.linkUrl = '';
             this.published = true;
         }
+    },
+    watch:{
+        pageTitle(newTitle, oldTitle){
+            if(this.linkText == oldTitle ){
+                this.linkText = newTitle;
+            }
+        }
     }
 }
 </script>
