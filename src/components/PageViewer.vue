@@ -1,22 +1,33 @@
 <template>
-          <div v-if="page"  class="container">
-          <h1 class="emphasize">{{ page.pageTitle }}</h1>
-          <p>{{ page.content}}</p>
-        </div>
+  <div v-if="page" class="container">
+    <h1 class="emphasize">{{ page.pageTitle }}</h1>
+    <p>{{ page.content }}</p>
+  </div>
 </template>
 
 <script>
 export default {
-  created(){
-   this.page = this.$pages.getSinglePage(this.$route.params.index);
-
+  props: ["index"],
+  created() {
+    this.page = this.$pages.getSinglePage(this.index);
+    // this.$watch(
+    //   () => this.$route.params,
+    //   (newPsarams, prevParams) => {
+    //     this.page = this.$pages.getSinglePage(newParams.index);
+    //   }
+    // );
   },
-  data () {
+  data() {
     return {
-    page: null
+      page: null,
     };
-  }
-}
+  },
+  watch: {
+    index(newIndex, oldindex) {
+      this.page = this.$pages.getSinglePage(newIndex);
+    },
+  },
+};
 </script>
 <style scoped>
 .emphasize {
