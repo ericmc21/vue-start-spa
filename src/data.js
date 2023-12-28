@@ -3,6 +3,10 @@ let pagesJson = localStorage.getItem(pagesKey);
 let pagesStore = JSON.parse(pagesJson);
 
 export default {
+  addPage(page) {
+    pagesStore.push(page);
+    localStorage.setItem(pagesKey, JSON.stringify(pagesStore));
+  },
   getAllPages() {
     return pagesStore;
   },
